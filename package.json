@@ -9,9 +9,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build-wasm && npm run build-bindgen && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-wasm": "cargo build --manifest-path crate/Cargo.toml --target wasm32-unknown-unknown",
+    "build-bindgen": "wasm-bindgen crate/target/wasm32-unknown-unknown/debug/refrunner.wasm --out-dir build"
   },
   "eslintConfig": {
     "extends": "react-app"
